@@ -1,0 +1,47 @@
+* {
+    box-sizing:border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    line-height: 1.6;
+    font-size: 1.125rem;
+}
+
+p {
+    padding-inline: 24px;
+}
+
+.container {
+    max-width: 800px;
+    background-color: sienna;
+    margin-inline: auto;
+    padding-block: 16px;
+    padding-inline: 24px;
+}
+
+.tooltip-container {
+    color: goldenrod;
+    text-decoration: none;
+    font-weight: 800;
+    display: inline-block;
+    position: relative;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    min-width: 150px;
+    background-color: orange;
+    color: whitesmoke;
+    font-weight: 400;
+    font-size: 1rem;
+    border: solid;
+    padding: 8px 16px;
+}
+
+.tooltip-container:hover .tooltip {
+    display: block;
+}
