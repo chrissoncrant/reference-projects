@@ -13,6 +13,7 @@ html, body {
 body {
     line-height: 1.6;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 400%;
 }
 
 img,
@@ -47,6 +48,7 @@ p {
 a {
     display: block;
     text-decoration: none;
+    color: inherit;
 }
 
 p a {
@@ -54,9 +56,25 @@ p a {
     text-decoration: underline;
 }
 
-main {
-    height: 250%;
+header {
+    background: seagreen;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    position: sticky;
+    top: -2rem;
+    z-index: 1;
 }
+
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    font-size: 2rem;
+}
+
+/* main {
+    height: 450%;
+} */
 
 .page-section {
     display: flex;
@@ -67,7 +85,7 @@ main {
 
 .page-section h2 {
     position: sticky;
-    top:0;
+    top:90px;
     align-self: flex-start;
 }
 
