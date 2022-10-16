@@ -1,0 +1,77 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    line-height: 1.6;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: solid;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, 
+button, 
+textarea, 
+select {
+    font: inherit;
+}
+
+ol, ul {
+    list-style: none;
+    padding: 0;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow-wrap: break-word;
+    max-width: 65ch;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+p a {
+    display: inline;
+    text-decoration: underline;
+}
+
+main {
+    height: 300%;
+    border: solid green;
+}
+
+.container {
+    height: 50%;
+    border: solid orangered;
+    position: relative;
+}
+
+.ball {
+    height: 300px;
+    width: 300px;
+    background-color: deeppink;
+    border-radius: 50%;
+    position: sticky;
+    /* Sticky Positioning requires a top, right, bottom, left value to be specified; usually it is top: 0. */
+    top: 0;
+}
