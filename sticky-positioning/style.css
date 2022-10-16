@@ -62,7 +62,7 @@ main {
     display: flex;
     gap: 48px;
     border-bottom: solid gray;
-    padding-left: 24px;
+    padding: 24px;
 }
 
 .page-section h2 {
