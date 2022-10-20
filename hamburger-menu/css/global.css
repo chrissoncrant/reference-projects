@@ -1,0 +1,218 @@
+:root {
+    --color-light: 0 0% 100%;
+    --color-light-shade: 356 80% 96%;
+    --color-dark: 284 100% 6%;
+    --color-primary: 298 52% 34%;
+    --color-primary-shade: 298 52% 20%;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    font-family: 'Hind', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    background-color: hsl(var(--color-light-shade));
+    color: hsl(var(--color-dark));
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, 
+button, 
+textarea, 
+select {
+    font: inherit;
+}
+
+ol[role="list"], 
+ul[role="list"] {
+    list-style: none;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow-wrap: break-word;
+}
+
+h1,
+h2 {
+    font-family: 'Halant', Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    line-height: 1.1;
+    max-width: 30ch;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+p,
+li,
+dl {
+    max-width: 70ch;
+}
+
+article {
+    margin-top: 2.5rem;
+    font-size: 1.25rem;
+}
+
+main:focus {
+    outline: none;
+}
+
+a {
+    display: block;
+    color: currentColor;
+    text-decoration: none;
+}
+
+:focus {
+    outline: 4px dotted currentColor;
+    outline-offset: 0.1rem;
+}
+
+p a {
+    display: inline;
+    text-decoration: underline;
+}
+
+@media (min-width: 40em) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* ###################### */
+/* UTILITIES ############ */
+/* ###################### */
+
+.skip-link {
+    display: inline-block;
+    padding: 0.7rem 1rem 0.5rem;
+    background-color: hsl(var(--color-light));
+    color: hsl(var(--color-primary-shade));
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.skip-link:hover {
+    background-color: hsl(var(--color-dark));
+    color: hsl(var(--color-light-shade));
+}
+
+/* Visually Hidden when not focused */
+.skip-link:not(:focus) {
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0 0 0 0);
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: auto;
+    width: 1px;
+}
+
+.wrapper {
+    max-width: 65rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.flow > * + * {
+    margin-top: var(--flow-space, 1em);
+}
+
+
+
+
+
+/* ###################### */
+/* BLOCKS ############### */
+/* ###################### */
+
+.site-head {
+    padding: 0.6rem 0rem;
+    background-color: hsl(var(--color-primary));
+    border-top: 5px solid hsl(var(--color-primary));
+    border-bottom: 5px solid hsl(var(--color-primary-shade));
+    color: hsl(var(--color-light));
+    line-height: 1;
+}
+
+.site-head :focus {
+    outline-color: hsl(var(--color-light));
+}
+
+.site-head__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 1rem;
+}
+
+.site-head__brand {
+    display: block;
+    width: 3rem;
+}
+
+.navigation ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.8rem;
+    padding: 0;
+}
+
+.navigation li {
+    margin: 0.1rem;
+}
+
+.navigation a {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.navigation a:hover {
+    color: hsl(var(--color-dark));
+}

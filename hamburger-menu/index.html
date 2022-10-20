@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Hamburger Menu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Halant:wght@600&family=Hind:wght@400;500;700&display=swap" rel="stylesheet">       
+
+    <link href="css/global.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header class="site-head" role="banner">
+        <div class="wrapper">
+            <div class="site-head__inner">
+                <a href="/" aria-label="Hamburger Home" class="site-head__brand">
+                    <img src="images/C-logo.png" alt="Logo">
+                </a>
+                <burger-menu max-width="600">
+                    <nav class="navigation" aria-label="primary">
+                        <ul role="list">
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+                            <li>
+                                <a href="#">Our Work</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="#">Account</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </burger-menu>
+            </div>
+        </div>
+    </header>
+    <main id="main-content" tabIndex="-1" class="wrapper">
+        <article class="[ post ] [ flow ]">
+            <h1>A responsive, progressivley enhanced burger menu.</h1>
+            <p>
+                Burger menus are a relic of responsive design that no matter what your opinion of them is, they continue to be a dominant design pattern. They’re very good at preserving often-limited horizontal space, but they also, more often than not, aren built in a user-hostile, non-accessible fashion.
+            </p>
+            <p>
+                <a href="https://piccalil.li/tutorial/build-a-fully-responsive-progressively-enhanced-burger-menu/" target="_blank">In this premium tutorial</a>, we’re going to build a burger menu from the ground up, using progressive enhancement, `ResizeObserver`, `Proxy` state and of course super-solid HTML and CSS that pull from the CUBE CSS principles.
+            </p>
+            <p>
+                This whole page is what you're building in the tutorial ☝️.
+                <a href="https://piccalil.li/tutorial/build-a-fully-responsive-progressively-enhanced-burger-menu/" target="_blank">Let's dive in!</a>
+            </p>
+        </article>
+    </main>
+    <script src="js/burger-menu.js" type="module" defer></script>
+</body>
+</html>
