@@ -95,16 +95,12 @@ select {
 
     /* Makes the select element invisible to the eye, but still available for the click functionality */
     opacity: 0;
-    
-    /* Without this the pseudo-element area is unclickable, which creates an inconsistent clickable area */
-    z-index: 1;
 }
 
 /* Because the select element is invisible, so too is the outline. This uses the sibling selector to set the outline on the presentation element when the select element is focused on. */
 select:focus + .presentation {
     /* Width is specifically set to fully cover the outer border created by the wrapper element. */
     outline: 0.35em solid slateblue;
-    
     background-color:rgb(176, 176, 176);
     color: black;
 }
@@ -127,10 +123,9 @@ select:hover + .presentation {
 
     /* Perceived inner border radius */
     border-radius: 0.3em;
-    
-    /* For aligning the chevron icon: */
-    display: flex;
-    align-items: center;
+
+    /* This removes pointer events which allows for the whole area of this div to be clickable, solving the chevron issue where it wouldn't allow clicking */
+    pointer-events: none;
 }
 
 .presentation::after {

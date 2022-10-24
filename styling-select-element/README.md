@@ -21,6 +21,6 @@ The JavaScript is very straight forward.
     - The wrapper dimension is dependent upon the presentation element (font size and padding)
     - Issues that need to be addressed:
         - Stacking layer issue: the chevron pokes through the select element, despite it being below.
-            - Solved by creating a stacking context within the wrapper, then setting z-index: 1 on the select element. 
+            - Solved by setting pointer-events: none on the presentation div. Due to stacking contexts, this div is setting above the select element in some way and therefore it was distrubing the ability to click. By setting the pointer-events property to none, the click events are able to bypass this layer. 
         - Focus ring is hidden due to the opacity being set to 0 on the select element
             - Issue is solved by utilizing sibling selector to style the presentation element when the select element is hovered and focused.
