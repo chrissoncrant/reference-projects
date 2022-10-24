@@ -119,7 +119,11 @@ select:hover + .presentation {
     background-color:hsl(0, 0%, 91%);
     color: hsla(0, 0%, 40%, 1);
     font-size: 1em;
-    padding: 0.1rem 1rem 0.15rem;
+    padding: 0.1em 1em 0.15em;
+
+    /* For positioning the cheveron */
+    position: relative;
+    padding-right: 4em;
 
     /* Perceived inner border radius */
     border-radius: 0.3em;
@@ -131,18 +135,20 @@ select:hover + .presentation {
 
 .presentation::after {
     content: "";
-    display: inline-block;
-    box-sizing: border-box;
 
-    /* All these values are set so that they will grow with changing font-size. */
-    width: 0.5em;
-    height: 0.5em;
+    /* For positioning the chevron */
+    position: absolute;
+    top: 0;
+    right: 1em;
+    bottom: 0;
+    margin: auto;
+
+    /* Chevron Styling */
+    width: 0.35em;
+    height: 0.35em;
     border-bottom: 0.2em solid;
     border-right: 0.2em solid;
     transform: rotate(45deg);
-
-    /* This is a tricky value because as the font-size grows the chevron slowly moves closer to the right edge; Higher font-sizes require lowering this margin-value */
-    margin-left: 3em;
 }
 
 
