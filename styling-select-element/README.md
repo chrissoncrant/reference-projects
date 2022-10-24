@@ -14,3 +14,13 @@ This component consists of 4 elements:
 See style.css for notes on the functionality for the rules declarations.
 
 The JavaScript is very straight forward. 
+
+## The Main Features
+- Select element is floated on top and made invisible. 
+    - It's dimension is directly tied to the wrapper dimension.
+    - The wrapper dimension is dependent upon the presentation element (font size and padding)
+    - Issues that need to be addressed:
+        - Stacking layer issue: the chevron pokes through the select element, despite it being below.
+            - Solved by creating a stacking context within the wrapper, then setting z-index: 1 on the select element. 
+        - Focus ring is hidden due to the opacity being set to 0 on the select element
+            - Issue is solved by utilizing sibling selector to style the presentation element when the select element is hovered and focused.
