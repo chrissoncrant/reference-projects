@@ -1,0 +1,148 @@
+*,
+*::before,
+*::after {
+    /* -webkit-box-sizing: border-box;
+    box-sizing: border-box; */
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    line-height: 1.6;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, 
+button, 
+textarea, 
+select {
+    font: inherit;
+}
+
+ol, ul {
+    list-style: none;
+    padding: 0;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow-wrap: break-word;
+    max-width: 65ch;
+}
+
+a {
+    /* display: block; */
+    color: inherit;
+    /* text-decoration: none; */
+}
+
+p a {
+    display: inline;
+    text-decoration: underline;
+}
+
+body {
+    padding: 0.25rem;
+}
+
+.select-wrapper {
+    /* In order to set the positioning context for the absolutely positioned select element */
+    position: relative;
+
+    /* Setting font size here using rem units, then everything else within will use ems to be relative to this. */
+    font-size: 1rem;
+
+    /* Sets wrapper size based on the length of content in the selected option */
+    width: max-content;
+
+    /* These 3 declarations are what creates the outer border; this specific method is used in order to create the appearance of cohesive inner and outer border radius */
+    background-color: rgb(159, 157, 157);
+    padding: 0.25em;
+    border-radius: 0.5em;
+}
+
+.select-wrapper:hover {
+    background-color:hsl(0, 0%, 91%);
+}
+
+select {   
+    /* Remove default appearances from the select element */
+    appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+
+    /* Make the select element sit on top of the presentation element and also having its size expand to fill the wrapper */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Makes the select element invisible to the eye, but still available for the click functionality */
+    opacity: 0;
+    
+    /* Without this the pseudo-element area is unclickable, which creates an inconsistent clickable area */
+    z-index: 1;
+}
+
+/* Because the select element is invisible, so too is the outline. This uses the sibling selector to set the outline on the presentation element when the select element is focused on. */
+select:focus + .presentation {
+    /* Width is specifically set to fully cover the outer border created by the wrapper element. */
+    outline: 0.35em solid slateblue;
+    
+    background-color:rgb(176, 176, 176);
+    color: black;
+}
+
+/* Similar to the focus, just without the outline. The select element is always on top and so it is the only element that can receive the hover.  */
+select:hover + .presentation {
+    background-color:rgb(176, 176, 176);
+    color: black;
+}
+
+.presentation {
+    background-color:hsl(0, 0%, 91%);
+    color: hsla(0, 0%, 40%, 1);
+    font-size: 1em;
+    padding: 0.1rem 1rem 0.15rem;
+
+    /* Perceived inner border radius */
+    border-radius: 0.3em;
+    
+    /* For aligning the chevron icon: */
+    display: flex;
+    align-items: center;
+}
+
+.presentation::after {
+    content: "";
+    display: inline-block;
+    box-sizing: border-box;
+
+    /* All these values are set so that they will grow with changing font-size. */
+    width: 0.5em;
+    height: 0.5em;
+    border-bottom: 0.2em solid;
+    border-right: 0.2em solid;
+    transform: rotate(45deg);
+
+    /* This is a tricky value because as the font-size grows the chevron slowly moves closer to the right edge; Higher font-sizes require lowering this margin-value */
+    margin-left: 3em;
+}
+
+

@@ -93,7 +93,7 @@ header {
 
 main {
     padding-block: 17rem;
-    border: solid;
+    height: 200%;
 }
 
 .pricing {
