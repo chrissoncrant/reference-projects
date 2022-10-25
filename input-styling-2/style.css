@@ -20,6 +20,7 @@ body {
 }
 
 img,
+svg,
 picture {
   max-width: 100%;
   display: block;
@@ -63,6 +64,7 @@ body {
     padding: 2rem;
 }
 
+/* For visually hiding the text label */
 .screen-reader-only {
     position: absolute;
     width: 1px;
@@ -79,46 +81,50 @@ body {
     position: relative;
     display: block;
     color: hsla(0, 0%, 50%, 1);
-    border-bottom: 2px solid black;
+}
+
+.input-label:hover {
+    color: black;
 }
 
 .input-label--lg {
     font-size: 1.125rem;
+}
+
+.input-label--lg input {
     width: 300px;
 }
 
 .input-label--sm {
     font-size: 0.875rem;
+}
+
+.input-label--sm input {
     width: 150px;
 }
 
-.icon {
+.input-label input {
+    /* This is needed so all of the em values will adjust with the label container font-size */
+    font: inherit;
+
+    height: (24em / 16);
+    border: none;
+    border-bottom: 1px solid black;
+    padding-left: 2em;
+}
+
+.input-label input:focus {
+    outline-offset: 3px;
+}
+
+.icon-wrapper {
     position: absolute;
-    pointer-events: none;
-    font-size: 0.9em;
-    height: 1em;
+
+    /* All the below is to help center the icon */
+    height: 1.5em;
+    aspect-ratio: 1;
     top: 0;
     bottom: 0;
-    left: 2px;
-    margin: auto;
+    margin: auto 0px;
 }
 
-input {
-    border: none;
-    padding-left: 1.7em;
-    width: calc(100% - 1.7em);
-    font-weight: 700;
-}
-
-input::placeholder {
-    font-weight: 400;
-    color: hsla(0, 0%, 50%, 1);
-}
-
-input:focus {
-    outline-offset: 0.1875em;
-}
-
-label:hover {
-    color: black;
-}
