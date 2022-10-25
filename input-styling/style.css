@@ -115,66 +115,11 @@ input::placeholder {
     color: hsla(0, 0%, 50%, 1);
 }
 
+input:focus {
+    outline-offset: 0.1875em;
+}
+
 label:hover > i,
 label:hover > input {
     color: black;
-}
-
-.page-section {
-    margin-bottom: 2rem;
-}
-
-nav.breadcrumbs-wrapper > ol {
-    padding: 0.7rem 2rem 0.8rem;
-    background-color: hsl(0, 0%, 50%);
-}
-
-nav.breadcrumbs-wrapper li {
-    display: inline;
-    position: relative;
-}
-
-nav.breadcrumbs-wrapper li + li {
-    margin-left: 1rem;
-}
-
-nav.breadcrumbs-wrapper li + li::before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: -0.7rem;
-    height: 1rem;
-    border-right: 2px solid white;
-    transform: rotate(15deg) translateY(-50%);
-}
-
-nav.breadcrumbs-wrapper a {
-    text-decoration: none;
-}
-
-nav.breadcrumbs-wrapper a:hover {
-    text-decoration: revert
-}
-
-nav.breadcrumbs-wrapper [aria-current="page"] {
-    color: black;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.btn {
-    /* box-sizing: content-box; */
-    background-color: slateblue;
-    
-}
-
-.btn-1 {
-    border: 0.5rem solid red;
-    padding: 0.5rem 1.5rem;
-}
-
-.btn-2 {
-    border: 1rem solid red;
-    padding: 0rem 1rem;
 }
