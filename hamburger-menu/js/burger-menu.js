@@ -13,23 +13,27 @@ class BurgerMenu extends HTMLElement {
         const self = this;
 
         //Declaring a property called state and wiring it up to a new instance of a Proxy object. 
-        //This property is utilized within the processStateChange and manageFocus methods
+
         this.state = new Proxy(
             //This is the target object
             {
+                //This property is updated via toggle, processStateChange, manageFocus, 
                 status: 'open',
-                //The enabled value is updated based on the Resize Observer which is set up within the connectedCallback menthod.
+                //The enabled value is updated/written to based on the Resize Observer which is set up within the connectedCallback menthod.
+                //This value is read within processStateChange, manageFocus methods
                 enabled: false,
             },
             //This is the handler object; the state parameter always refers to the above target object.
             //This is only handling write requests. 
             {
                 set(state, key, value) {
+                    //wires the current value to a variable
                     const oldValue = state[key];
 
+                    //writes/updates the specified property of the state/target object to the specified value
                     state[key] = value;
 
-                    //State change is processed only if the old value is changed. This is important for the Resize Observer. 
+                    //State change is processed only if the old value is changed. This is important for the Resize Observer.
                     if (oldValue !== value) {
                         self.processStateChange();
                     }
@@ -39,16 +43,77 @@ class BurgerMenu extends HTMLElement {
                 }
             }
         );
+    }   
+    
+    // ################################
+    // UTILITY FUNCTIONS ##############
+    // ################################
+
+    //This is called within the handler of the Proxy object.
+    //This set up the 'status' and 'enabled' attributes and gives them the values based on the properties of the Proxy object/State object.
+    processStateChange() {
+        //sets the 'status' and 'enabled' attributes to the relative values of the state object, which is the target object of the Proxy wired to this.state. This is a simple read operation and goes through the handler transparently. 
+        this.root.setAttribute('status', this.state.status);       
+        this.root.setAttribute('enabled', this.state.enabled ? 'true' : 'false');
+
+        //Updates what elements are focusable which is based on the 'state' attribute value. Adds/Removes focus ability on the links.
+        this.manageFocus();
+
+        //status is either 'open' or 'closed'
+        //Setting the aria attributes on the button.
+        switch (this.state.status) {
+            case 'closed':
+                this.trigger.setAttribute('aria-expanded', 'false');
+                this.trigger.setAttribute('aria-label', 'Open menu');
+                break;
+            //If status is either 'initial' or 'open' the code will run
+            case 'open':
+            case 'initial':
+                this.trigger.setAttribute('aria-expanded', 'true');
+                this.trigger.setAttribute('aria-label', 'Close menu');
+                break;
+        }
+    }
+
+    //This is all about the focus aspect in the links. Hides links from focus when burger menu is closed, and makes links focusable when the menu is open.  
+    //This is called within the processStateChange, which is called whenever the Proxy object's target properties change.
+    manageFocus() {
+        
+        //Removes the ability to focus on the navigation if burger-root enabled attribute is false/burger menu is closed.
+        if (!this.state.enabled) {
+            this.focusableElements.forEach(element => element.removeAttribute('tabindex'));
+            return;
+        }
+
+        switch (this.state.status) {
+            //If the status is open and the burger mene is open then remove the tabindex value, which would be tabindex=-1, and this makes the navigation elements focusable.
+            case 'open':
+                this.focusableElements.forEach(element => element.removeAttribute('tabindex'));
+                break;
+            //Gather all the elements that are not the button and update the tabindex value to -1. This is important because when the burger-root is closed the navigation will not be visible and so therefore the links shouldn't be focusable.
+            case 'closed':
+                [...this.focusableElements]
+                    .filter(
+                        element => element.getAttribute('data-element') !== 'burger-menu-trigger'
+                    )
+                    .forEach(element => element.setAttribute('tabindex', '-1'));
+                break;
+        }
     }
 
     //This getter is used by the Resize Observer. The max-width attribute set on the <burger-menu> element will determine if the burger button is displayed or not.
+    //This property is read within the connectedCallback method and used each time the window is resized.
     get maxWidth() {
         return parseInt(this.getAttribute('max-width') || 9999, 10);
     }
 
+    // ################################
+    // FLOW FUNCTIONS #################
+    // ################################
+
     //The code within this is called for each instance of rendering the <burger-menu> element on the page. 
     //This is the function callback that starts everything off.
-    //It serves 3 purposes: 1) store the initial HTML markup that is hard-coded within the burger-menu element; 2) run the render method to generate the burger menu html; 3) set up the resize observer which will determine when to display the burger button.
+    //It serves 3 purposes: 1) store the initial HTML markup that is hard-coded within the burger-menu element; 2) run the render method to generate the burger menu html; 3) set up the resize observer which will determine when to display the burger button/trigger.
     connectedCallback() {
         //This is creating a property that is wired up to the current hard-coded markup within the burger-menu element consisting of the primary navigation.
         //This property is utilized within the render method.
@@ -64,15 +129,15 @@ class BurgerMenu extends HTMLElement {
 
             //This is wiring up the boolean value to the enabled property of the Proxy object that is wired up to the state property.
             //This value is depenedent on the wrapper element's width in comparison to the value of the max-width attribute set on the burger-menu element. 
-            //maxwidth is a getter which returns the value of the max-width attribute set on the burger-menu element
+            //maxwidth is a getter which reads the value of the max-width attribute set on the burger-menu element
             this.state.enabled = contentRect.width <= this.maxWidth;
         })
 
-        //This activates the watcher and tells it to watch the parent node of the burger-menu element
+        //This activates the watcher and tells it to watch the parent node of the burger-menu element.
         observer.observe(this.parentNode);
     }
 
-    //This render method is not some special method. It could have been called 'giggety' - the name is arbitrary; don't confuse it with React's render().
+    //Note: This render method is not some special method, it is user declared. It could have been called 'giggety' - the name is arbitrary; don't confuse it with React's render().
     render() {
         //sets the innerHTML of the <burger-menu> element. The HTML that is hard written becomes a child of the burger-menu__panel.
         this.innerHTML = `
@@ -89,32 +154,41 @@ class BurgerMenu extends HTMLElement {
         this.postRender();
     }
 
+    //This is called within the render method.
+    //Declares properties and runs toggle
     postRender() {           
-        //Store rendered elements within properties.
+        //Stores rendered elements within properties.
 
         //This is the child within the burger-menu and it wraps everything.
         this.root = this.querySelector('[data-element="burger-root"]');
 
+
         //This is the button
         this.trigger = this.querySelector('[data-element="burger-menu-trigger"]');
+
 
         //This is the parent of the navigation
         this.panel = this.querySelector('[data-element="burger-menu-panel"]');
 
-        //Wiring up the focusableElements property to a NodeList of all focusable elements
+
+        //Wiring up the focusableElements property to a NodeList of all focusable elements within burger-menu
         this.focusableElements = getFocusableElements(this);
 
         if (this.trigger && this.panel) {
+            
+            //set the initial state attribute values for burger-root element
             this.toggle();
 
-
+            //add the event listener to the burger-trigger button
             this.trigger.addEventListener('click', evt => {
                 evt.preventDefault();
 
+                //when button is clicked change the state status value, which will then update the state attribute value on the burger-root element
                 this.toggle();
             });
 
             document.addEventListener('focusin', () => {
+                //This is checking whether the element that has focus is contained within the burger-root element. If it is not then the status attribute value of the burger-root will be forced to be 'closed'.
                 if (!this.contains(document.activeElement)) {
                     this.toggle('closed');
                 }
@@ -123,9 +197,12 @@ class BurgerMenu extends HTMLElement {
             return;
         }
 
+        //if the button and the panel elements are not present, then only the initial markup will be rendered.
         this.innerHTML = this.initialMarkup;
     }
 
+    //This is called within the postRender method
+    //This sets the "state" attribute values based on the value of the state and Proxy object. 
     toggle(forcedStatus) {
         if (forcedStatus) {
             if (this.state.status === forcedStatus) {
@@ -135,51 +212,6 @@ class BurgerMenu extends HTMLElement {
             this.state.status = forcedStatus;
         } else {
             this.state.status = this.state.status === 'closed' ? 'open' : 'closed';
-            console.log(this.state.status)
-        }
-    }
-
-    processStateChange() {
-        //sets the 'status' attribute to the value of the status property of the state object, which is the target object of the Proxy wired to this.state. This is a simple read operation and doesn't go through any handler 
-        this.root.setAttribute('status', this.state.status);       
-        this.root.setAttribute('enabled', this.state.enabled ? 'true' : 'false');
-
-        this.manageFocus();
-
-        //status is either 'open' or 'closed'
-        switch (this.state.status) {
-            case 'closed':
-                this.trigger.setAttribute('aria-expanded', 'false');
-                this.trigger.setAttribute('aria-label', 'Open menu');
-                break;
-            //If status is either 'initial' or 'open' the code will run
-            case 'open':
-            case 'initial':
-                this.trigger.setAttribute('aria-expanded', 'true');
-                this.trigger.setAttribute('aria-label', 'Close menu');
-                break;
-        }
-    }
-
-    manageFocus() {
-        
-        
-        if (!this.state.enabled) {
-            this.focusableElements.forEach(element => element.removeAttribute('tabindex'));
-            return;
-        }
-
-        switch (this.state.status) {
-            case 'open':
-                this.focusableElements.forEach(element => element.removeAttribute('tabindex'));
-                break;
-            case 'closed':
-                [...this.focusableElements]
-                    .filter(
-                        element => element.getAttribute('data-element') !== 'burger-menu-trigger'
-                    )
-                    .forEach(element => element.setAttribute('tabindex', '-1'));
-                break;
         }
     }
 }

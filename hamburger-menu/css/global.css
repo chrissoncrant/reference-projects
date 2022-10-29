@@ -220,3 +220,19 @@ p a {
 .navigation a:hover {
     color: hsl(var(--color-dark));
 }
+
+.burger-menu[enabled="false"] .burger-menu__trigger {
+    display: none;
+}
+
+.burger-menu[enabled="true"] .burger-menu__trigger {
+    display: block;
+}
+
+.burger-menu[enabled="false"] .burger-menu__panel {
+    display: block;
+}
+
+.burger-menu[enabled="true"] .burger-menu__panel {
+    display: none;
+}

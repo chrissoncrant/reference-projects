@@ -27,3 +27,5 @@ Custom Elements that extend the HTMLElement object.
 
 Proxy Objects
 - [Proxy object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy#:~:text=The%20Proxy%20object%20allows%20you,sanitize%20inputs%2C%20and%20so%20on.)
+
+tabindex attribute and its function: when 'tabindex=0' (the default value) that element becomes tabbable/focusable. There are certain elements that are focusable by default, such as inputs and links. When tabindex is set to -1, that element is no longer focusable.
