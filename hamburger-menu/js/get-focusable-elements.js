@@ -1,3 +1,11 @@
+/**
+ * Returns back a NodeList of focusable elements
+ * that exist within the passed parent HTMLElement
+ *
+ * @param {HTMLElement} parent HTML element
+ * @returns {NodeList} The focusable elements that we can find
+ */
+
 export default parent => {
     if (!parent) {
         console.warn('You need to pass a parent HTMLElement');
