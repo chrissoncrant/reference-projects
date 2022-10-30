@@ -34,6 +34,7 @@ class BurgerMenu extends HTMLElement {
                     state[key] = value;
 
                     //State change is processed only if the old value is changed. This is important for the Resize Observer.
+                    //Triggers updates to the HTML element.
                     if (oldValue !== value) {
                         self.processStateChange();
                     }
@@ -176,7 +177,7 @@ class BurgerMenu extends HTMLElement {
 
         if (this.trigger && this.panel) {
             
-            //set the initial state attribute values for burger-root element
+            //Update the State proxy object's status value
             this.toggle();
 
             //add the event listener to the burger-trigger button
@@ -188,7 +189,7 @@ class BurgerMenu extends HTMLElement {
             });
 
             document.addEventListener('focusin', () => {
-                //This is checking whether the element that has focus is contained within the burger-root element. If it is not then the status attribute value of the burger-root will be forced to be 'closed'.
+                //This is checking whether the element that has focus is contained within the burger-root element. If it is not then the status attribute value of the burger-root will be forced to be 'closed'. This would call the 
                 if (!this.contains(document.activeElement)) {
                     this.toggle('closed');
                 }
@@ -202,7 +203,7 @@ class BurgerMenu extends HTMLElement {
     }
 
     //This is called within the postRender method
-    //This sets the "state" attribute values based on the value of the state and Proxy object. 
+    //This updates the value of the state and Proxy object. In turn this change will update the corresponding attribute on the burger-root element.
     toggle(forcedStatus) {
         if (forcedStatus) {
             if (this.state.status === forcedStatus) {

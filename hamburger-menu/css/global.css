@@ -236,3 +236,11 @@ p a {
 .burger-menu[enabled="true"] .burger-menu__panel {
     display: none;
 }
+
+.burger-menu[status="open"] .burger-menu__panel {
+    display: block;
+}
+
+.burger-menu[status="closed"] .burger-menu__panel {
+    display: none;
+}
