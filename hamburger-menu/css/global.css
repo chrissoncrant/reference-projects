@@ -97,7 +97,7 @@ a {
 
 :focus {
     outline: 4px dotted currentColor;
-    outline-offset: 0.1rem;
+    outline-offset: 0.2rem;
 }
 
 p a {
@@ -218,7 +218,7 @@ p a {
 }
 
 .navigation a:hover {
-    color: var(--color-dark);
+    opacity: 0.8;
 }
 
 .burger-menu__trigger {
@@ -226,7 +226,7 @@ p a {
 }
 
 /* ################################ */
-/* Styling Burger Menu bars ####### */
+/* Styling Burger Menu ####### */
 /* ################################ */
 .burger-menu__bar,
 .burger-menu__bar::before,
@@ -301,6 +301,10 @@ p a {
     font-size: 1.5rem;
 }
 
+.burger-menu[enabled="true"] .navigation li a {
+    width: max-content  ;
+}
+
 .burger-menu[enabled="true"][status="open"] .burger-menu__panel {
     visibility: visible;
     opacity: 1;
@@ -316,8 +320,8 @@ p a {
     transform: translateY(0);
     opacity: 1;
     transition: 
-        transform 500ms cubic-bezier(0.17, 0.67, 0, 0.87) 700ms, 
-        opacity 500ms ease 800ms;
+        transform 500ms cubic-bezier(0.17, 0.67, 0, 0.87) 500ms, 
+        opacity 500ms ease 600ms;
 }
 
 .burger-menu[enabled="true"][status="open"] .burger-menu__bar::before {
