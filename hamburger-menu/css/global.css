@@ -1,9 +1,9 @@
 :root {
-    --color-light: 0 0% 100%;
-    --color-light-shade: 356 80% 96%;
-    --color-dark: 284 100% 6%;
-    --color-primary: 298 52% 34%;
-    --color-primary-shade: 298 52% 20%;
+    --color-light: hsl(0 0% 100%);
+    --color-light-shade: hsl(356 80% 96%);
+    --color-dark: hsl(284 100% 6%);
+    --color-primary: hsl(298 52% 34%);
+    --color-primary-shade: hsl(298 52% 20%);
 }
 
 *,
@@ -26,8 +26,8 @@ body {
     line-height: 1.6;
     font-family: 'Hind', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 400;
-    background-color: hsl(var(--color-light-shade));
-    color: hsl(var(--color-dark));
+    background-color: var(--color-light-shade);
+    color: var(--color-dark);
 }
 
 img,
@@ -134,8 +134,8 @@ p a {
 .skip-link {
     display: inline-block;
     padding: 0.7rem 1rem 0.5rem;
-    background-color: hsl(var(--color-light));
-    color: hsl(var(--color-primary-shade));
+    background-color: var(--color-light);
+    color: var(--color-primary-shade);
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
@@ -145,8 +145,8 @@ p a {
 }
 
 .skip-link:hover {
-    background-color: hsl(var(--color-dark));
-    color: hsl(var(--color-light-shade));
+    background-color: var(--color-dark);
+    color: var(--color-light-shade);
 }
 
 /* Visually Hidden when not focused */
@@ -176,15 +176,15 @@ p a {
 
 .site-head {
     padding: 0.6rem 0rem;
-    background-color: hsl(var(--color-primary));
-    border-top: 5px solid hsl(var(--color-primary));
-    border-bottom: 5px solid hsl(var(--color-primary-shade));
-    color: hsl(var(--color-light));
+    background-color: var(--color-primary);
+    border-top: 5px solid var(--color-primary);
+    border-bottom: 5px solid var(--color-primary-shade);
+    color: var(--color-light);
     line-height: 1;
 }
 
 .site-head :focus {
-    outline-color: hsl(var(--color-light));
+    outline-color: var(--color-light);
 }
 
 .site-head__inner {
@@ -218,29 +218,120 @@ p a {
 }
 
 .navigation a:hover {
-    color: hsl(var(--color-dark));
+    color: var(--color-dark);
 }
 
-.burger-menu[enabled="false"] .burger-menu__trigger {
+.burger-menu__trigger {
     display: none;
+}
+
+/* ################################ */
+/* Styling Burger Menu bars ####### */
+/* ################################ */
+.burger-menu__bar,
+.burger-menu__bar::before,
+.burger-menu__bar::after {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--color-light);
+    border: 1px solid var(--color-light);
+    position: absolute;
+    border-radius: 3px;
+    left: 50%;
+    margin-left: -12px;
+    transition: transform 350ms ease-in-out;
+}
+
+.burger-menu__bar {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.burger-menu__bar::before,
+.burger-menu__bar::after {
+    content: '';
+}
+
+.burger-menu__bar::before {
+    top: -8px;
+}
+
+.burger-menu__bar::after {
+    bottom: -8px;
 }
 
 .burger-menu[enabled="true"] .burger-menu__trigger {
     display: block;
-}
-
-.burger-menu[enabled="false"] .burger-menu__panel {
-    display: block;
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .burger-menu[enabled="true"] .burger-menu__panel {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5rem 1.5rem  2rem 1.5rem;
+    width: 100%;
+    height: 100%;
+    /* This hides from screen readers */
+    visibility: hidden;
+    /* This hides from eyes, but in a way that is animatable */
+    opacity: 0;
+    background-color: var(--color-primary-shade);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-.burger-menu[status="open"] .burger-menu__panel {
+.burger-menu[enabled="true"] .navigation ul {
+    /* changing from display block */
     display: block;
 }
 
-.burger-menu[status="closed"] .burger-menu__panel {
-    display: none;
+.burger-menu[enabled="true"] .navigation ul > * + * {
+    margin-top: 2rem;
+}
+
+.burger-menu[enabled="true"] .navigation li {
+    font-size: 1.5rem;
+}
+
+.burger-menu[enabled="true"][status="open"] .burger-menu__panel {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 400ms ease;
+}
+
+.burger-menu[enabled="true"][status="closed"] .burger-menu__panel > * {
+    opacity: 0;
+    transform: translateY(5rem);
+}
+
+.burger-menu[enabled="true"][status="open"] .burger-menu__panel > * {
+    transform: translateY(0);
+    opacity: 1;
+    transition: 
+        transform 500ms cubic-bezier(0.17, 0.67, 0, 0.87) 700ms, 
+        opacity 500ms ease 800ms;
+}
+
+.burger-menu[enabled="true"][status="open"] .burger-menu__bar::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.burger-menu[enabled="true"][status="open"] .burger-menu__bar::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+.burger-menu[enabled="true"][status="open"] .burger-menu__bar {
+    background-color: transparent;
+    border-color: transparent;
+    transform: rotate(180deg);
 }

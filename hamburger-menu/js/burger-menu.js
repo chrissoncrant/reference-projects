@@ -188,8 +188,9 @@ class BurgerMenu extends HTMLElement {
                 this.toggle();
             });
 
+            //If an item is focused on and it is not within the burger menu, then State.status is forced to be 'closed'. The usefulness of this is that if the menu was open and an item was tabbed to outside the burger menu, then burger menu would close. 
             document.addEventListener('focusin', () => {
-                //This is checking whether the element that has focus is contained within the burger-root element. If it is not then the status attribute value of the burger-root will be forced to be 'closed'. This would call the 
+                
                 if (!this.contains(document.activeElement)) {
                     this.toggle('closed');
                 }
@@ -203,7 +204,8 @@ class BurgerMenu extends HTMLElement {
     }
 
     //This is called within the postRender method
-    //This updates the value of the state and Proxy object. In turn this change will update the corresponding attribute on the burger-root element.
+    //This updates the value of the status property of the State object.
+    //The initial value of state.status before this method is called the first time is 'open' and this is changed to 'closed' when toggle() is called within render().
     toggle(forcedStatus) {
         if (forcedStatus) {
             if (this.state.status === forcedStatus) {
