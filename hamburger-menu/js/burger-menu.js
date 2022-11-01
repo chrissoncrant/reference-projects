@@ -92,6 +92,7 @@ class BurgerMenu extends HTMLElement {
                 this.focusableElements.forEach(element => element.removeAttribute('tabindex'));
                 break;
             //Gather all the elements that are not the button and update the tabindex value to -1. This is important because when the burger-root is closed the navigation will not be visible and so therefore the links shouldn't be focusable.
+            //The spread operator is needed here because the array filter method will not work on NodeLists. The spread converts the NodeList to an array.
             case 'closed':
                 [...this.focusableElements]
                     .filter(
@@ -104,6 +105,7 @@ class BurgerMenu extends HTMLElement {
 
     //This getter is used by the Resize Observer. The max-width attribute set on the <burger-menu> element will determine if the burger button is displayed or not.
     //This property is read within the connectedCallback method and used each time the window is resized.
+    //The '10' indicates the base. It is an argument of the parseInt function.
     get maxWidth() {
         return parseInt(this.getAttribute('max-width') || 9999, 10);
     }
