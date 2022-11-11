@@ -132,6 +132,9 @@ p a {
 }
 
 .skip-link {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
     display: inline-block;
     padding: 0.7rem 1rem 0.5rem;
     background-color: var(--color-light);
@@ -139,9 +142,6 @@ p a {
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
 }
 
 .skip-link:hover {
