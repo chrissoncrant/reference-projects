@@ -29,3 +29,7 @@ To adjust this we can add a different min-width on the tooltip class.
 Depending on the size of the paragraph and its width, a tooltip may appear and cover another tooltip-container. When this occurs now, the tooltip-container text will bleed through the tooltip. To fix this we add z-index: 1 to the tooltip. 
 
 Now it's a matter of styling the tooltip to taste. Adding some padding, adjusting the text color, adding a background color to make it opaque, adding a border, etc.
+
+## Additional Method
+Using the :target pseudo class can work as well see this [MDN article on the target psuedo class](https://developer.mozilla.org/en-US/docs/Web/CSS/:target)
+
