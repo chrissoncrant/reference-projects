@@ -3,7 +3,7 @@
 function calculateFluidType(minFontSize, maxFontSize, minFontEnd, maxFontStart, unit='px') {
     const rateChange = ((100 * (maxFontSize - minFontSize)) / (maxFontStart - minFontEnd)).toFixed(3);
 
-    const rootFontSize = ((minFontEnd * maxFontSize - maxFontStart * minFontSize) / (minFontEnd - maxFontStart)).toFixed(3);
+    const rootFontSize = (((minFontEnd * maxFontSize) - (maxFontStart * minFontSize)) / (minFontEnd - maxFontStart)).toFixed(3);
 
     if (unit === 'px') {
         return `clamp(${minFontSize}px, ${rateChange}vw + ${rootFontSize}px, ${maxFontSize}px)`;
@@ -12,4 +12,4 @@ function calculateFluidType(minFontSize, maxFontSize, minFontEnd, maxFontStart, 
     }
 }
 
-// console.log(calculateFluidType(64, 100, 720, 875, 'rem'))
+console.log(calculateFluidType(20, 28, 725, 1050, 'rem'))
