@@ -12,4 +12,4 @@ function calculateFluidType(minFontSize, maxFontSize, minFontEnd, maxFontStart, 
     }
 }
 
-console.log(calculateFluidType(20, 28, 725, 1050, 'rem'))
+console.log(calculateFluidType(16, 18, 721, 900, 'rem'))
