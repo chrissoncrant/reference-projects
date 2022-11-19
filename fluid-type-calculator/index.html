@@ -5,12 +5,41 @@
         <meta name="viewport" content="width=device-width">
         <title>Playground</title>
 
-        <!--Font Awesome-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="../images/C-logo.png?v=1.1" type="image/x-icon">
 
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body class="flow">
+        <p>Note: Input values in pixels please</p>
+
+        <label>
+            Minimum Font Size:
+            <input class="minFontSize" type="number">
+        </label>
+        <label>
+            Maximum Font Size:
+            <input class="maxFontSize" type="number">
+        </label>
+        <label>
+            Minimum Font Size Endpoint:
+            <input class="minFontEnd" type="number">
+        </label>
+        <label>
+            Maximum Font Size Startpoint:
+            <input class="maxFontStart" type="number">
+        </label>
+        <label>
+            Output Units:
+            <label for="pixels">Pixels <input id="pixels" type="radio" value="px" checked name="unit"></label>
+
+            <label for="rem">Rems <input id="rems" type="radio" value="rem" name="unit"></label>
+        </label>
+
+        <button type="submit">Calculate</button>
+
+        <label for="output">Your clamp value:</label>
+        <p class="answer"></p>
 
         <script src="script.js" type="module"></script>
     </body>
