@@ -1,0 +1,110 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, 
+button, 
+textarea, 
+select {
+    font: inherit;
+}
+
+ol[role="list"], ul[role="list"] {
+    list-style: none;
+    padding: 0;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow-wrap: break-word;
+    max-width: 65ch;
+}
+
+a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+p a {
+    display: inline;
+    text-decoration: underline;
+}
+
+body {
+    margin: 48px;
+}
+
+
+.flow * + * {
+    margin-top: 2em;
+}
+
+.wrapper {
+    border: solid purple;
+    padding: 10px;
+    margin: 4px;
+    display: flex;
+}
+
+.wrapper section {
+    width: 100%;
+    display: flex;
+    border: solid deeppink;
+    border-radius: 5px;
+    gap: 16px;
+    margin: 24px;
+}
+
+.col {
+    flex: 1;
+    padding: 16px;
+}
+
+.wrapper-1 .col:nth-child(2) {
+    position: relative;
+    overflow: auto;
+}
+
+.clamp {
+    position: absolute;
+}
+
+.wrapper-2 section {
+    overflow: auto;
+}
+
+.wrapper-2 .col:nth-child(1) {
+    position: sticky;
+    top: 0;
+}
+
+.wrapper-2 .col:nth-child(2) {
+    height: 0px;
+}

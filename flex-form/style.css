@@ -58,6 +58,6 @@ input {
 }
 
 button {
-    flex: 1;
+    flex: 1 70px;
     height: 2.5rem;
 }
