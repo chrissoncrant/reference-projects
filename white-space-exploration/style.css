@@ -1,0 +1,126 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* html, body {
+    max-height: 100%;
+} */
+
+body {
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, 
+button, 
+textarea, 
+select {
+    font: inherit;
+}
+
+ol[role="list"], ul[role="list"] {
+    list-style: none;
+    padding: 0;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow-wrap: break-word;
+    max-width: 65ch;
+}
+
+a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+p a {
+    display: inline;
+    text-decoration: underline;
+}
+
+/* INSERT NEW CSS BELOW */
+h1 {
+    margin-bottom: 36px;
+}
+
+.wrapper {
+    max-width: 500px;
+    margin-block: 24px;
+    margin-inline: auto;
+}
+
+nav {
+    text-align: center;
+}
+
+nav li {
+    border-bottom: solid;
+    display: inline-block;
+    padding: 4px 12px;
+}
+
+nav li:hover {
+    background-color: rgb(207, 219, 231);
+}
+
+h1 {
+    text-align: center;
+
+}
+
+h2 {
+    margin-top: 48px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 32px;
+}
+
+p, pre {
+    margin-inline: auto;
+}
+
+.bd {
+    border: solid;
+}
+
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.pre {
+    white-space: pre;
+}
+
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
+.pre-line {
+    white-space: pre-line;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Text Exploration</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="[[insert description here]]">
+    <meta name="og:image" content="[[meta image source]]">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/C-logo.png?v=1.1" type="image/x-icon">
+
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <main class="white-space-main wrapper">
+        <h1><code>white-space</code> Exploration</h1>
+
+        <p>The purpose of this is to explore how the white-space declaration works.</p>
+
+        <p>It impacts how white-space that occurs within the HTML document is interpreted when the webpage is painted.</p>
+
+        <p>It determines whether or not to pay attention to spaces, tabs, new lines that occur within the HTML document, as well as how to handle the wrapping of text.</p>
+
+        <h2>Normal</h2>
+        <p class="normal bd">white-space property value is normal. No matter what the
+            text looks
+            like
+        in the HTML      document, it will be formatted regularly, ignoring extra new lines, spaces, and tabs.
+        </p>
+
+        <h2>No wrap</h2>
+        <p class="nowrap bd">These words are set with no-wrap white-space value. These words will break out of any limitied width containers and will jsut continue on forever in a long single line. It is not even connected to the viewport. White
+            spaces
+                    within HTML are ignored
+        </p>
+
+
+        <h2>Pre (CSS Declaration)</h2>
+        <p class="pre bd">
+            I am text that has white-space: pre declared.
+        
+The formatting I have within the HTML document is what shows up here, on the webpage.    Notice that I don't care about the container's width. I am what I am.
+        
+    Below is text similar to what's below in order to compare:
+            In order to use the
+                '&lt;'
+                    I had to wrap it into an escape sequence. The &lt; looks like this: '&amp;lt;'
+        
+                In order to display that 
+                I had to 
+                
+                escape the '&amp;' itself within the
+    escape sequence.
+        </p>
+
+
+        <h2>Pre (HTML Element)</h2>
+        <pre>I am text that is wrapped within a &lt;pre&gt; element.
+                
+          Notice the monospace font. This is default for this element.
+            In order to use the
+                '&lt;'
+                    I had to wrap it into an escape sequence. The &lt; looks like this: '&amp;lt;' in the HTML document.
+        
+                In order to display that HTML entity on the webpage I had to use the HTML entity for the &amp; itself within
+        
+                
+        the larger
+        
+        
+        
+                sequence.
+        </pre>
+        <h2>Pre-wrap</h2>
+        <p class="pre-wrap bd">
+        I represent the value of 'pre-wrap'. I am just like 'pre', but with wrapping. 
+        
+            The formatting I have within the HTML document is what shows up here, on the webpage.
+        
+        One difference between me and the 'pre' value, is that I will wrap within my HTML element. 
+        
+        I    won't    break  out.
+        I am what I am.
+        
+        Below is text similar to what's below in order to compare:
+            In order to use the
+                '&lt;'
+                    I had to wrap it into an escape sequence. The &lt; looks like this: '&amp;lt;'
+        
+                In order to display that I had to escape the &amp; itself within the escape sequence.
+        </p>
+        <h2>pre-line</h2>
+        <p class="pre-line bd">
+            
+Value: 'pre-line'.
+
+            I will take new lines into account
+            but I will not take       extra 
+            
+            spaces or     tabs into account.
+
+
+
+        </p>
+    </main>
+
+</body>
+</html>
