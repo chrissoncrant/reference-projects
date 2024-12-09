@@ -2,6 +2,8 @@
 
 //Importing non-default exports requires the brackets and to rename the variable requires using the 'as' keyword.
 
+//REMEMBER the '.js' extension in the import if you get 404 errors
+
 import hi, { sayBye as bye, saySomething } from "./sayings.js";
 
 hi();
